@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
         app: advent
-    template:
+  template:
         metadata:
             labels:
                 app: advent
