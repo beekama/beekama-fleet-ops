@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: advent-ingress
+    labels:
+        app: advent-app
+    annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+    ingressClassName: traefik
+    tls:
+        - hosts:
+            - advent.rancher.beekama.de
+          secretName: advent-tls
+    rules:
+        - host: advent.rancher.beekama.de
+          http:
+            paths:
+                - path: /
+                  pathType: Prefix
+                  backend:
+                    service:
+                        name: advent-service
+                        port:
+                            number: 80

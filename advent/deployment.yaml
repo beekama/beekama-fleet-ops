@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: advent
+    name: advent-deployment
     labels:
-        app: advent
+        app: advent-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-        app: advent
+        app: advent-app
   template:
         metadata:
             labels:
-                app: advent
+                app: advent-app
         spec:
             containers:
-                - name: advent
+                - name: advent-container
                   image: harbor-registry.atlantishq.de/beekama/advent:latest
                   imagePullPolicy: Always   # missing
                   ports:
