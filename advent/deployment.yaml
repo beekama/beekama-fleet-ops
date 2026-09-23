@@ -16,7 +16,7 @@ spec:
         spec:
             containers:
                 - name: advent-container
-                  image: harbor-registry.atlantishq.de/beekama/advent:latest
+                  image: registry.services.atlantishq.de/beekama/advent:latest
                   imagePullPolicy: Always   # missing
                   ports:
                     - containerPort: 80
