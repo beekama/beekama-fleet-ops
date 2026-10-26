@@ -1,0 +1,58 @@
+apiVersion: renovate-operator.mogenius.com/v1alpha1
+kind: RenovateJob
+metadata:
+  name: beekama-github
+spec:
+  image: renovate/renovate:44.181.5
+  provider:
+    name: github
+
+  discoveryFilters:
+    - beekama/adventcalendar
+    - beekama/beekama-fleet-ops
+    - beekama/mail-autoconfig
+
+  secretRef: renovate-github-beekama
+
+  schedule: "* * * * *"
+
+  parallelism: 3
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      memory: 1Gi
+
+  access:
+    adminGroups:
+      - harbor-admins
+
+    readerGroups:
+      - tools
+
+    anonymousRead: false
+    anonymousReadLogs: false
+
+  extraEnv:
+    - name: RENOVATE_ASSIGNEES
+      value: '["beekama"]'
+
+    - name: RENOVATE_CONFIG
+      value: |
+        {
+          "pip_requirements": {
+            "managerFilePatterns": [
+              "/(^|/)req\\.txt$/"
+            ]
+          }
+        }
+
+    - name: RENOVATE_ONBOARDING_CONFIG
+      value: |
+        {
+          "extends": [
+            "config:recommended"
+          ]
+        }
