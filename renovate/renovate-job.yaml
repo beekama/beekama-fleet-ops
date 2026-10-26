@@ -14,7 +14,7 @@ spec:
 
   secretRef: renovate-github-beekama
 
-  schedule: "* * * * *"
+  schedule: "0 2 * * *"
 
   parallelism: 3
 
