@@ -3,7 +3,7 @@ kind: RenovateJob
 metadata:
   name: beekama-github
 spec:
-  image: renovate/renovate:44.181.5
+  image: renovate/renovate:44.257.5
   provider:
     name: github
 
